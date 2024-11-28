@@ -1,4 +1,4 @@
-package be.pxl.demo.domain.usercredentials;
+package be.pxl.demo.domain.user;
 
 import jakarta.persistence.*;
 
@@ -16,16 +16,13 @@ public class User {
 	private LocalDateTime creationTime;
 	@Column(name="dob")
 	private LocalDate dateofBirth;
-	@Enumerated(value=EnumType.STRING)
-	@Column(name="user_type")
-	private UserType userType;
 	@Column(name = "first_name")
 	private String firstName;
 	@Column(name = "last_name")
 	private String lastName;
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "cred_id")
-	private Credentials credentials;
+	@JoinColumn(name = "sub_id")
+	private Subscription subscription;
 
 	public Long getId() {
 		return id;
@@ -33,14 +30,6 @@ public class User {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public UserType getUserType() {
-		return userType;
-	}
-
-	public void setUserType(UserType userType) {
-		this.userType = userType;
 	}
 
 	public String getFirstName() {
@@ -67,12 +56,11 @@ public class User {
 		this.dateofBirth = dateofBirth;
 	}
 
-	public void setCredentials(Credentials credentials) {
-		this.credentials = credentials;
-		credentials.setUser(this);
+	public void setSubscription(PlanType planType) {
+		this.subscription = new Subscription(planType);
 	}
 
-	public Credentials getCredentials() {
-		return credentials;
+	public Subscription getSubscription() {
+		return subscription;
 	}
 }

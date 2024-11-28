@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("football")
-public class FootballPlayerController {
+public class  FootballPlayerController {
 
     private final FootballPlayerService footballPlayerService;
 

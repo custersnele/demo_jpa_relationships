@@ -1,12 +1,12 @@
 version: "3.3"
 
 services:
-  research-db:
+  demo-db:
     image: mysql:latest
     ports:
       - "3310:3306"
     environment:
-      MYSQL_DATABASE: 'researchdb'
+      MYSQL_DATABASE: 'demodb'
       # So you don't have to use root, but you can if you like
       MYSQL_USER: 'user'
       # You can use whatever password you like
